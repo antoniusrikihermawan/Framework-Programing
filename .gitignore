@@ -3,3 +3,17 @@
 
 # Ada Library Information
 *.ali
+
+# Python
+*.pyc
+__pycache__/
+
+# Django
+db.sqlite3
+media/
+staticfiles/
+
+# Environment
+myenv/
+venv/
+.env

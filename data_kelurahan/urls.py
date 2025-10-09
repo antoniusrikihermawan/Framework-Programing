@@ -16,8 +16,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from warga.views import WargaDetailView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('warga/', include('warga.urls')),
+    path('wargapengaduan/<int:pk>/', WargaDetailView.as_view(), name='warga_detail'),
+
 ]

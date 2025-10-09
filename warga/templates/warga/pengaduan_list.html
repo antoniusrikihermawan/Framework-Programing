@@ -1,0 +1,32 @@
+{% extends 'base.html' %} {% block content %}
+<div class="container mt-4">
+  <h2 class="mb-3">Daftar Semua Pengaduan</h2>
+
+  {% if pengaduan_list %}
+  <table class="table table-striped table-bordered">
+    <thead>
+      <tr>
+        <th>No</th>
+        <th>Judul Pengaduan</th>
+        <th>Isi Pengaduan</th>
+        <th>Pelapor</th>
+        <th>Tanggal</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for pengaduan in pengaduan_list %}
+      <tr>
+        <td>{{ forloop.counter }}</td>
+        <td>{{ pengaduan.judul }}</td>
+        <td>{{ pengaduan.isi_pengaduan|truncatechars:50 }}</td>
+        <td>{{ pengaduan.pelapor.nama_lengkap }}</td>
+        <td>{{ pengaduan.tanggal_pengaduan|date:"d M Y" }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% else %}
+  <p>Tidak ada pengaduan yang ditemukan.</p>
+  {% endif %}
+</div>
+{% endblock %}

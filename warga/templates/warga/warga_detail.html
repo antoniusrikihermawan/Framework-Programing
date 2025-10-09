@@ -1,0 +1,19 @@
+<!-- warga/templates/warga/warga_detail.html -->
+<h1>Detail Warga</h1>
+<p><strong>Nama:</strong> {{ object.nama_lengkap }}</p>
+<p><strong>NIK:</strong> {{ object.nik }}</p>
+<p><strong>Alamat:</strong> {{ object.alamat }}</p>
+
+<hr />
+<h2>Daftar Pengaduan oleh {{ object.nama_lengkap }}</h2>
+
+<ul>
+  {% for aduan in object.pengaduan.all %}
+  <li>
+    <strong>{{ aduan.judul }}</strong> (Status: {{ aduan.get_status_display }})
+    <p>{{ aduan.deskripsi }}</p>
+  </li>
+  {% empty %}
+  <li>Warga ini belum pernah membuat pengaduan.</li>
+  {% endfor %}
+</ul>

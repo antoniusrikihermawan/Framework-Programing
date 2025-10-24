@@ -17,7 +17,6 @@ class PengaduanForm(forms.ModelForm):
         model = Pengaduan
         fields = ['pelapor', 'judul', 'deskripsi']
         
-        # Widget ini agar form terlihat bagus dengan Bootstrap
         widgets = {
             'pelapor': forms.Select(attrs={'class': 'form-select'}),
             'judul': forms.TextInput(attrs={'class': 'form-control'}),

@@ -1,0 +1,13 @@
+{% extends 'base.html' %} {% block content %}
+<h2>Hapus Pengaduan</h2>
+<p>
+  Apakah kamu yakin ingin menghapus pengaduan:
+  <strong>{{ object.judul }}</strong>?
+</p>
+
+<form method="post">
+  {% csrf_token %}
+  <button type="submit" class="btn btn-danger">Ya, hapus</button>
+  <a href="{% url 'warga:pengaduan_list' %}" class="btn btn-secondary">Batal</a>
+</form>
+{% endblock %}

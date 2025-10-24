@@ -1,0 +1,12 @@
+{% extends 'base.html' %} {% block content %}
+<h2>Hapus Data Warga</h2>
+<p>
+  Apakah kamu yakin ingin menghapus data: <strong>{{ object.nama }}</strong>?
+</p>
+
+<form method="post">
+  {% csrf_token %}
+  <button type="submit" class="btn btn-danger">Ya, hapus</button>
+  <a href="{% url 'warga:warga-list' %}" class="btn btn-secondary">Batal</a>
+</form>
+{% endblock %}

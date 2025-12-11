@@ -7,6 +7,7 @@ from .forms import WargaForm, PengaduanForm
 from .serializers import WargaSerializer, PengaduanSerializer
 from rest_framework import viewsets
 from rest_framework.permissions import AllowAny, IsAuthenticatedOrReadOnly
+from rest_framework.filters import SearchFilter, OrderingFilter
 
 #  --- API VIEWS ---
 class WargaViewSet(viewsets.ModelViewSet):
@@ -14,9 +15,21 @@ class WargaViewSet(viewsets.ModelViewSet):
      serializer_class = WargaSerializer
      permissions_classes = [IsAuthenticatedOrReadOnly]
 
+      # --- Tambahkan konfigurasi di bawah ini ---
+     filter_backends = [SearchFilter, OrderingFilter]
+     search_fields = ['nama_lengkap', 'nik', 'alamat']
+     ordering_fields = ['nama_lengkap', 'tanggal_registrasi']
+
+
+
 class PengaduanViewSet(viewsets.ModelViewSet):
      queryset = Pengaduan.objects.all()
      serializer_class = PengaduanSerializer
+
+     # --- Tambahkan konfigurasi di bawah ini ---
+     filter_backends = [SearchFilter, OrderingFilter]
+     search_fields = ['judul', 'status']
+     ordering_fields = ['judul', 'status']
      
 #  --- API VIEWS ---
 # class WargaListAPIView(ListAPIView):

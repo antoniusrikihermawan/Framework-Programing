@@ -11,25 +11,31 @@ from rest_framework.filters import SearchFilter, OrderingFilter
 
 #  --- API VIEWS ---
 class WargaViewSet(viewsets.ModelViewSet):
-     queryset = Warga.objects.all().order_by('-tanggal_registrasi')
-     serializer_class = WargaSerializer
-     permissions_classes = [IsAuthenticatedOrReadOnly]
+    queryset = Warga.objects.all().order_by('-tanggal_registrasi')
+    serializer_class = WargaSerializer
 
-      # --- Tambahkan konfigurasi di bawah ini ---
-     filter_backends = [SearchFilter, OrderingFilter]
-     search_fields = ['nama_lengkap', 'nik', 'alamat']
-     ordering_fields = ['nama_lengkap', 'tanggal_registrasi']
+    filter_backends = [SearchFilter, OrderingFilter]
+    search_fields = ['nama_lengkap', 'nik', 'alamat']
+    ordering_fields = ['nama_lengkap', 'tanggal_registrasi']
 
-
+    def get_permissions(self):
+        if self.request.method == 'GET':
+            return [AllowAny()]
+        return [IsAuthenticated()]
 
 class PengaduanViewSet(viewsets.ModelViewSet):
-     queryset = Pengaduan.objects.all()
-     serializer_class = PengaduanSerializer
+    queryset = Pengaduan.objects.all()
+    serializer_class = PengaduanSerializer
 
-     # --- Tambahkan konfigurasi di bawah ini ---
-     filter_backends = [SearchFilter, OrderingFilter]
-     search_fields = ['judul', 'status']
-     ordering_fields = ['judul', 'status']
+    filter_backends = [SearchFilter, OrderingFilter]
+    search_fields = ['judul', 'status']
+    ordering_fields = ['judul', 'status']
+
+    def get_permissions(self):
+        if self.request.method in ['GET', 'POST']:
+            return [AllowAny()]
+        return [IsAuthenticated()]
+
      
 #  --- API VIEWS ---
 # class WargaListAPIView(ListAPIView):

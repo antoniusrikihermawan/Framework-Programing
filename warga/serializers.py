@@ -6,7 +6,20 @@ class WargaSerializer(serializers.ModelSerializer):
         model = Warga
         fields = ['id', 'nik', 'nama_lengkap', 'alamat', 'nomor_telepon']
 
+
 class PengaduanSerializer(serializers.ModelSerializer):
+    pelapor_nama = serializers.CharField(
+        source='pelapor.nama_lengkap',
+        read_only=True
+    )
+
     class Meta:
         model = Pengaduan
-        fields = ['id', 'judul', 'deskripsi', 'status', 'pelapor']
+        fields = [
+            'id',
+            'judul',
+            'deskripsi',
+            'status',
+            'pelapor',
+            'pelapor_nama'
+        ]

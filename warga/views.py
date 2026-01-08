@@ -6,7 +6,7 @@ from .forms import WargaForm, PengaduanForm
 # from rest_framework.generics import ListAPIView, RetrieveAPIView
 from .serializers import WargaSerializer, PengaduanSerializer
 from rest_framework import viewsets
-from rest_framework.permissions import AllowAny, IsAuthenticatedOrReadOnly
+from rest_framework.permissions import AllowAny, IsAuthenticatedOrReadOnly, IsAuthenticated
 from rest_framework.filters import SearchFilter, OrderingFilter
 
 #  --- API VIEWS ---
